@@ -1,6 +1,5 @@
 # MLOPS:ML integrating with Devops 
-## Hello everyone, TODAY I am going to integrate Machine Learning with DevOps .
-   So, I am going to train my model  and predict accuracy by using Devops.
+ Hello everyone, TODAY I am going to integrate Machine Learning with DevOps. So, I am going to train my model  and predict accuracy by using Devops.
 
 ## Project Overview :
 
