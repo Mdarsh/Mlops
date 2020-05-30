@@ -110,20 +110,20 @@ For checking the accuracy and running the model for improved accuracy we use the
     then</br>
         test -t 1 && USE_TTY="-t"</br>
        sudo docker rm -f os1</br>
-    filenames = ['code_file2.py', 'code_file0.py']</br>
-    with open('output_file.py', 'w') as outfile:</br>
+       filenames = ['code_file2.py', 'code_file0.py']</br>
+       with open('output_file.py', 'w') as outfile:</br>
             for fname in filenames:</br>
                     with open(fname) as infile:</br>
                             for line in infile:</br>
                                     outfile.write(line)</br>
-    sudo docker cp output_file.py ./root/code/</br>
-    sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1</br>
+      sudo docker cp output_file.py ./root/code/</br>
+      sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1</br>
     elif sudo grep "neural_net" /root/code/code_file2.py</br>
     then</br>
-    test -t 1 && USE_TTY="-t"</br>
-    sudo docker rm -f os1</br>
-    filenames = ['code_file2.py', 'code_file0.py']</br>
-    with open('output_file.py', 'w') as outfile:</br>
+      test -t 1 && USE_TTY="-t"</br>
+      sudo docker rm -f os1</br>
+      filenames = ['code_file2.py', 'code_file0.py']</br>
+      with open('output_file.py', 'w') as outfile:</br>
             for fname in filenames:</br>
                     with open(fname) as infile:</br>
                             for line in infile:</br>
