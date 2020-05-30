@@ -29,37 +29,56 @@ In RHEL8 fisrt make a directory that will store all the data or the program for 
 Now the jenkins will automatically copy the files in this folder.
 Download a centos:7 image in docker using:
 
-docker pull centos:7
-docker run -it --name os centos:7
+    docker pull centos:7
+    docker run -it --name os centos:7
 Now install miniconda in this centos:7 :
 
-  yum -y update 
-  yum -y install curl bzip2 
-  curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh 
-  bash /tmp/miniconda.sh -bfp /usr/local/ 
-  rm -rf /tmp/miniconda.sh 
-  conda install -y python=3 
-  conda update conda 
-  conda clean --all --yes 
-  rpm -e --nodeps curl bzip2 
-  yum clean all
+    yum -y update 
+    yum -y install curl bzip2 
+    curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh 
+    bash /tmp/miniconda.sh -bfp /usr/local/ 
+    rm -rf /tmp/miniconda.sh 
+    conda install -y python=3 
+    conda update conda 
+    conda clean --all --yes 
+    rpm -e --nodeps curl bzip2 
+    yum clean all
 Now install all the requirements for the Machine learning model.
 After the requirements are fulfilled use commit command to make your own image and we will use this image in our Dockerfile.
 
-  docker commit os myimage:v2
+    docker commit os myimage:v2
 Now type:
 
- vim Dockerfile
+    vim Dockerfile
 And write the following code:
 
-FROM: myimage:v2
-RUN mkdir /root/my_model
-VOLUME /root/my_model
-COPY ./Code/. ./root/my_model/
-WORKDIR /root/my_model
-CMD ["python3","code_file2.py"]
+    FROM: myimage:v2
+    RUN mkdir /root/my_model
+    VOLUME /root/my_model
+    COPY ./Code/. ./root/my_model/
+    WORKDIR /root/my_model
+    CMD ["python3","code_file2.py"]
 Save this docker file and now build two different images for different environments:
 
- docker build -t deep:v1 /root
- docker build -t neural_net:v1 /root
-Job 1 :
+    docker build -t deep:v1 /root
+    docker build -t neural_net:v1 /root
+## Job 1 :
+Pushing code to GitHub repository.
+
+* Create a new job in Jenkins.
+* Enter a Job Name, select “Freestyle project” and hit “OK” button.
+* You will be redirected to the job configuration page where you can see the following settings :
+General Settings: The section contents the general setting of the job like Discard old builds, support parameter, Disable the project, etc.
+Source Code Management: The section contents the source code options such as GIT, SVN, etc.
+Build Triggers: The section contents trigger settings that trigger the build based on the specific condition match.
+Build: The section contents the build steps that can be performed by adding Batch or shell command.
+Post-build Actions: The section contents the build steps that can be performed after the build action done.
+
+job1 2
+
+
+Let’s add a build step that prints date by adding the “Executing shell” step.
+Click on the “Add build step” drop-down and select “Execute shell”
+Now type the following command:
+
+job1
