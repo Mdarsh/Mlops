@@ -1,4 +1,4 @@
-# MLOPS:ML integrating with Devops 
+# MLOPS: ML integrating with Devops 
  Hello everyone, TODAY I am going to integrate Machine Learning with DevOps. So, I am going to train my model  and predict accuracy by using Devops.
 
 ## Project Overview :
@@ -151,6 +151,7 @@ Now in the Execute shell type the following command.
 
 ## job6 :
   Start the jobs using pipeline view :
+  
 First install delivery pipeline and build pipeline plugin on jenkins.
 Click on '+' in Jenkins Dashboard and select pipeline and give a name to the pipeline.
 Now select the Job that you want to start the pipeline from, here i have given it my first job.
