@@ -22,5 +22,44 @@ We are going to build a chain of jobs here in order to get desired accuracy for 
 * Job 5 : Retrain the model or notify that the best model is being created.
 
 * Job 6 : job6 will for monitoring: if container where app is running. fails due to any reason then this job should automatically start the container again from where the last trained model left.
-## JOB1 :
+## Creating a dockerfile :
+In RHEL8 fisrt make a directory that will store all the data or the program for our machine learning model.
 
+    mkdir Code
+Now the jenkins will automatically copy the files in this folder.
+Download a centos:7 image in docker using:
+
+docker pull centos:7
+docker run -it --name os centos:7
+Now install miniconda in this centos:7 :
+
+  yum -y update 
+  yum -y install curl bzip2 
+  curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh 
+  bash /tmp/miniconda.sh -bfp /usr/local/ 
+  rm -rf /tmp/miniconda.sh 
+  conda install -y python=3 
+  conda update conda 
+  conda clean --all --yes 
+  rpm -e --nodeps curl bzip2 
+  yum clean all
+Now install all the requirements for the Machine learning model.
+After the requirements are fulfilled use commit command to make your own image and we will use this image in our Dockerfile.
+
+  docker commit os myimage:v2
+Now type:
+
+ vim Dockerfile
+And write the following code:
+
+FROM: myimage:v2
+RUN mkdir /root/my_model
+VOLUME /root/my_model
+COPY ./Code/. ./root/my_model/
+WORKDIR /root/my_model
+CMD ["python3","code_file2.py"]
+Save this docker file and now build two different images for different environments:
+
+ docker build -t deep:v1 /root
+ docker build -t neural_net:v1 /root
+Job 1 :
