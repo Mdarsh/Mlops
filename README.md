@@ -93,6 +93,9 @@ You can also use if sudo grep "sigmoid" /root/code/code_file2.py or if sudo grep
 This will first check the model and will start the container accordingly.
 
 ## job3 :
+
+Train our model and predict accuracy or matrics.
+## job4 : 
 Tweaking the model :
 We already have a file "code_file2.py" that contains the code of the model.
 But the tweak files contain the function used in code_file2.py which can be added for more layers.
@@ -138,3 +141,17 @@ This code will check the model for the accuracy.
 If the accuracy is less than required, then this program will append the two program files and will create a new output file.
 Here I have given two tweaking files but you can add more provided you have to add the conditions fir more files in this program.
 
+## job5 :
+Retrain the model or notify that the best model is created  :
+
+Add another job in Jenkins and name it.
+Go to build triggers and click on 'Build after other projects are built' and give the name of your previous job.
+
+Now in the Execute shell type the following command.
+
+## job6 :
+  Start the jobs using pipeline view :
+First install delivery pipeline and build pipeline plugin on jenkins.
+Click on '+' in Jenkins Dashboard and select pipeline and give a name to the pipeline.
+Now select the Job that you want to start the pipeline from, here i have given it my first job.
+This is the final look after all the jobs will be build.
