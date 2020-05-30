@@ -69,7 +69,7 @@ Pushing code to GitHub repository.
 * Enter a Job Name, select “Freestyle project” and hit “OK” button.
 * You will be redirected to the job configuration page where you can see the following settings :
 
-General Settings: The section contents the general setting of the job like Discard old builds, support parameter, Disable the project, etc.
+  *General Settings: The section contents the general setting of the job like Discard old builds, support parameter, Disable the project, etc.
 
  Source Code Management: The section contents the source code options such as GIT, SVN, etc.
  
