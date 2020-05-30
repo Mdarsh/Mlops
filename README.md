@@ -78,13 +78,63 @@ Pushing code to GitHub repository.
   *Build: The section contents the build steps that can be performed by adding Batch or shell command.
  
   *Post-build Actions: The section contents the build steps that can be performed after the build action done.
- 
-
-job1 2
 
 
 Let’s add a build step that prints date by adding the “Executing shell” step.
 Click on the “Add build step” drop-down and select “Execute shell”
-Now type the following command:
 
-job1
+## job2 :
+Automatic launch and training the model.
+Go to build triggers and click on 'Build after other projects are built' and give the name of your previous job.
+
+Now to go to Build Execute shell and type the following command.
+You can also use if sudo grep "sigmoid" /root/code/code_file2.py or if sudo grep "softmax" /root/code/code_file2.py
+
+This will first check the model and will start the container accordingly.
+
+## job3 :
+Tweaking the model :
+We already have a file "code_file2.py" that contains the code of the model.
+But the tweak files contain the function used in code_file2.py which can be added for more layers.
+For checking the accuracy and running the model for improved accuracy we use the following code.
+
+
+    actual_accuracy=$(sudo cat /root/code/acc.txt)</br>
+    expected=95</br>
+    compare=$(echo "$actual_accuracy > $expected" | bc )</br>
+
+
+    while [[ $compare != 1 ]]</br>
+    do</br>
+    if sudo grep "deep" /root/code/code_file2.py</br>
+    then</br>
+        test -t 1 && USE_TTY="-t"</br>
+       sudo docker rm -f os1</br>
+    filenames = ['code_file2.py', 'code_file0.py']</br>
+    with open('output_file.py', 'w') as outfile:</br>
+            for fname in filenames:</br>
+                    with open(fname) as infile:</br>
+                            for line in infile:</br>
+                                    outfile.write(line)</br>
+    sudo docker cp output_file.py ./root/code/</br>
+    sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1</br>
+    elif sudo grep "neural_net" /root/code/code_file2.py</br>
+    then</br>
+    test -t 1 && USE_TTY="-t"</br>
+    sudo docker rm -f os1</br>
+    filenames = ['code_file2.py', 'code_file0.py']</br>
+    with open('output_file.py', 'w') as outfile:</br>
+            for fname in filenames:</br>
+                    with open(fname) as infile:</br>
+                            for line in infile:</br>
+                                    outfile.write(line)</br>
+    sudo docker cp output_file.py ./root/code/</br>
+    sudo docker run -i -v /root/code:/root/my_model --name os1 deep:v1 </br>
+
+    compare=$(echo "$actual_accuracy > $expected" | bc )</br>
+    done</br></br>
+For the tweaking you can refer to another code in the repository.
+This code will check the model for the accuracy.
+If the accuracy is less than required, then this program will append the two program files and will create a new output file.
+Here I have given two tweaking files but you can add more provided you have to add the conditions fir more files in this program.
+
