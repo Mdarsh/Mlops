@@ -1,27 +1,25 @@
-# How to integrate Machine Learning with DevOps
+# MLOPS:ML integrating with Devops 
+## Hello everyone, TODAY I am going to integrate Machine Learning with DevOps .So, I am going to train my model  and predict accuracy by using Devops.
 
-## Hello everyone, Do you ever ask yourself the question "Can I integrate Machine Learning with DevOps ?" So I am here with the answer and answer is yes, We can integrate ML with DevOps and it is collectively called as MLOps. We can achive MLOps in various ways and for various use cases. This article will explain you one of them.
+## Project Overview :
 
-### Problem Overview :
-1. Create docker container image that has python installed in it along with all the essential libraries required for training Machine learning model.
-2. Create number of jobs in jenkins to test , notify , rebuild , tweak the machine learning model in order to get desired accuracy.
+1. Create docker container image that has python, Keras or numpy installed using dockerfile.
+2. When we launch this image , it should automatically starts train the model in the container.
+3. Now we create a job chain of job1,job2,job3,job4 and job5 using build pipeline plugin in jenkins.
 
-### Solution Overview :
+## Project Summary :
 
-We are going going to build chain of jobs here in order to get desired accuracy for given dataset but before going ahead we have to create a Dockerfile which will create image with required configurations.
+We are going to build a chain of jobs here in order to get desired accuracy for given dataset but before going ahead we have to create a Dockerfile which will create image with required configurations.
 
-* Job 1 : Job 1 will keep an eye on github repository as soon as developer push something there this job will automatically copy everything in the folder of my base os.(I am using RHEL 8 as my base os (VM)).
+* Job 1 : Job 1 will pull the Github repo automatically when some developers push repo to Github.
 
-* Job 2 : Success of Job 1 will trigger job to this job will launch docker container which is workspace for Jenkins.
+* Job 2 : By looking at the code or program file, jenkins should automatically start the respective machine learning software installed interpreter install image container to deploy code and start training.
 
-* Job 3 : After successfully launching the OS Jenkins will trigger this job. This job will search for file which is pushed by developer and has a main code to train model. (main.py in my case)
+* Job 3 : Train our model and predict accuracy or metrics.
 
-* Job 4 : I have created Job 4 to notify developer that main.py file has some errors due to which job 3 failed.
+* Job 4 : If metrics accuracy is less than 80% , then tweak the machine learning model architecture.
 
-* Job 5 : If main.py runs successfully but give less accuracy than what developer desire then jenkins should automatically tweak something and by various hit and trials will try to increase the accuracy. In order to achive this thing developer will push one more file along with main.py that is rebuild.py. This will help jenkins to take tests and build model again and again till desired accuracy is achived.
+* Job 5 : Retrain the model or notify that the best model is being created.
 
-* Job 6 : This job is success notifier as soon as jenkins succeed in achieving desired accuracy it will notify developer about success of the model and accuracy achieved.
-
-* Job 7 : This job is again failure notier but now it will notify on failure of rebuild.py file.
-
-* Job 8 : Job 8 will be monitoring job. It will keep an eye on running container. If it found container crashed it will immediately launch new container with same configuration.
+* Job 6 : job6 will for monitoring: if container where app is running. fails due to any reason then this job should automatically start the container again from where the last trained model left.
+#
