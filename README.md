@@ -22,4 +22,5 @@ We are going to build a chain of jobs here in order to get desired accuracy for 
 * Job 5 : Retrain the model or notify that the best model is being created.
 
 * Job 6 : job6 will for monitoring: if container where app is running. fails due to any reason then this job should automatically start the container again from where the last trained model left.
-#
+## JOB1 :
+
