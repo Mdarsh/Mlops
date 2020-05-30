@@ -70,7 +70,7 @@ Pushing code to GitHub repository.
 * You will be redirected to the job configuration page where you can see the following settings :
 
 ** General Settings: The section contents the general setting of the job like Discard old builds, support parameter, Disable the project, etc.
-**Source Code Management: The section contents the source code options such as GIT, SVN, etc.
+#* Source Code Management: The section contents the source code options such as GIT, SVN, etc.
 ** Build Triggers: The section contents trigger settings that trigger the build based on the specific condition match.
 ** Build: The section contents the build steps that can be performed by adding Batch or shell command.
 ** Post-build Actions: The section contents the build steps that can be performed after the build action done.
